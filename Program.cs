@@ -1,5 +1,5 @@
 Random rand = new Random();
-int number = rand.Next(1, 100);
+int number = rand.Next(1, 101);
 
 for (int i = 0; i<10; i++)
 {
