@@ -61,6 +61,7 @@ while (true)
             try
             {
                 remove_id = Convert.ToInt32(Console.ReadLine());
+                linesList.RemoveAt(remove_id);
             }
             catch (FormatException)
             {
@@ -68,8 +69,12 @@ while (true)
                 Console.ReadKey();
                 break;
             }
-
-            linesList.RemoveAt(remove_id);
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Nie ma takiej ksiazki. Wcisnij dowolny przycisk");
+                Console.ReadKey();
+                break;
+            }
 
             //update IDs after deleting
             for (int id_update = 0; id_update < linesList.Count; id_update++)
@@ -100,9 +105,11 @@ while (true)
             Console.Clear();
             Console.WriteLine("Podaj identyfikator ksiazki ktora chcesz wypozyczyc/oddac:");
             int borrow_id = 0;
+            string working_book = "";
             try
             {
                 borrow_id = Convert.ToInt32(Console.ReadLine());
+                working_book = linesList[borrow_id];
             }
             catch (FormatException)
             {
@@ -110,7 +117,12 @@ while (true)
                 Console.ReadKey();
                 break;
             }
-            string working_book = linesList[borrow_id];
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Nie ma takiej ksiazki. Wcisnij dowolny przycisk");
+                Console.ReadKey();
+                break;
+            }
             string[] working_book_array = working_book.Split(';');
             if (working_book_array[4] == "0")
             {
@@ -168,9 +180,11 @@ while (true)
             Console.Clear();
             Console.WriteLine("Podaj identyfikator ksiazki ktora chcesz zmodyfikowac:");
             int alter_id = 0;
+            string[] alter_array = new string[0];
             try
             {
                 alter_id = Convert.ToInt32(Console.ReadLine());
+                alter_array = linesList[alter_id].Split(";");
             }
             catch (FormatException)
             {
@@ -178,8 +192,13 @@ while (true)
                 Console.ReadKey();
                 break;
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Nie ma takiej ksiazki. Wcisnij dowolny przycisk");
+                Console.ReadKey();
+                break;
+            }
 
-            string[] alter_array = linesList[alter_id].Split(";");
 
             Console.WriteLine("Podaj autora (Aktualnie " + alter_array[1] + "):");
             string alter_autor = Console.ReadLine();
