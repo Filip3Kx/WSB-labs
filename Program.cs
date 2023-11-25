@@ -1,7 +1,17 @@
 string filePath = "C:\\Users\\Filip\\source\\repos\\lab1\\lab1\\biblioteka.txt";
 //Format pliku biblioteka.txt
 //ID;autor;tytul;rok;czy_wypozyczona
-List<string> linesList = new List<string>(File.ReadAllLines(filePath));
+List<string> linesList = new List<string>();
+try
+{
+    linesList = new List<string>(File.ReadAllLines(filePath));
+}
+catch (FileNotFoundException)
+{
+    Console.WriteLine("Nieprawidlowy plik lub sciezka do pliku");
+    return;
+}
+
 int book_id = linesList.Count();
 
 while (true)
