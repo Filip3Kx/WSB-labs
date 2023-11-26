@@ -1,5 +1,5 @@
 string filePath = "C:\\Users\\Filip\\source\\repos\\lab1\\lab1\\biblioteka.txt";
-//Format pliku biblioteka.txt
+//biblioteka.txt
 //ID;autor;tytul;rok;czy_wypozyczona
 List<string> linesList = new List<string>();
 try
@@ -54,6 +54,12 @@ while (true)
             }
             Console.WriteLine("0 jesli ksiazka jest w bibliotece\n1 jesli ksiazka jest wypozyczona:");
             string add_status = Console.ReadLine();
+            if (add_status != "0" || add_status != "1")
+            {
+                Console.WriteLine("Nieprawidlowo wpisany status ksiazki. Wcisnij dowolny przycisk");
+                Console.ReadKey();
+                break;
+            }
 
 
             object[] rekord_array = { book_id, add_autor, add_tytul, add_rok, add_status };
@@ -208,7 +214,6 @@ while (true)
                 Console.ReadKey();
                 break;
             }
-
 
             Console.WriteLine("Podaj autora (Aktualnie " + alter_array[1] + "):");
             string alter_autor = Console.ReadLine();
