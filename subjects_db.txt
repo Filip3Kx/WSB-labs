@@ -1,0 +1,4 @@
+0;Fizyka
+1;Biologia
+2;Informatyka
+3;Matematyka
